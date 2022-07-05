@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 
+import '../../../../utils/config.dart';
 import '../../../data/models/users_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -29,7 +30,7 @@ class DeleteUserController extends GetxController {
   void increment() => count.value++;
   getUsers() async {
     loading.value=true;
-    String url = "http://192.168.1.14:8083/api/v1/users";
+    String url = "${Environement.URL}/api/v1/users";
     try {
       http.Response response = await http.get(Uri.parse(url));
       users.value = (jsonDecode(response.body) as List)

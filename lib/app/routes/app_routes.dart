@@ -8,6 +8,8 @@ abstract class Routes {
   static const APP_DRAWER = _Paths.APP_DRAWER;
   static const ADD_USER = _Paths.ADD_USER;
   static const DELETE_USER = _Paths.DELETE_USER;
+  static const ADD_PAIRINGS = _Paths.ADD_PAIRINGS;
+  static const LIST_PAIRINGS = _Paths.LIST_PAIRINGS;
 }
 
 abstract class _Paths {
@@ -17,4 +19,6 @@ abstract class _Paths {
   static const APP_DRAWER = '/app-drawer';
   static const ADD_USER = '/add-user';
   static const DELETE_USER = '/delete-user';
+  static const ADD_PAIRINGS = '/add-pairings';
+  static const LIST_PAIRINGS = '/list-pairings';
 }

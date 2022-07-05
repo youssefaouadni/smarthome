@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:smart_home/app/modules/add_pairings/bindings/add_pairings_binding.dart';
+import 'package:smart_home/app/modules/add_pairings/views/add_pairings_view.dart';
 import 'package:smart_home/app/modules/add_user/bindings/add_user_binding.dart';
 import 'package:smart_home/app/modules/add_user/views/add_user_view.dart';
 import 'package:smart_home/app/modules/delete_user/bindings/delete_user_binding.dart';
 import 'package:smart_home/app/modules/delete_user/views/delete_user_view.dart';
 import 'package:smart_home/app/modules/home/bindings/home_binding.dart';
 import 'package:smart_home/app/modules/home/views/home_view.dart';
+import 'package:smart_home/app/modules/list_pairings/bindings/list_pairings_binding.dart';
+import 'package:smart_home/app/modules/list_pairings/views/list_pairings_view.dart';
 
 import '../controllers/app_drawer_controller.dart';
 
@@ -42,11 +46,26 @@ class AppDrawerView extends GetView<AppDrawerController> {
                 Get.off(()=>const AddUserView(),binding: AddUserBinding());
               },
             ),
+
              ListTile(
               title:const Text('Delete user'),
                leading: const Icon(Icons.delete_rounded),
               onTap: (){
                 Get.off(()=>const DeleteUserView(),binding: DeleteUserBinding());
+              },
+            ),
+            ListTile(
+              title:const Text('List Pairings'),
+              leading: const Icon(Icons.list),
+              onTap: (){
+                Get.off(()=>const ListPairingsView(),binding: ListPairingsBinding());
+              },
+            ),
+            ListTile(
+              title:const Text('Add Pairings'),
+              leading: const Icon(Icons.add_box_rounded),
+              onTap: (){
+                Get.off(()=>const AddPairingsView(),binding: AddPairingsBinding());
               },
             ),
           ],

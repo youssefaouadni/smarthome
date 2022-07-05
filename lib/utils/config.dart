@@ -10,4 +10,6 @@ class Environement {
 
   static final String PASSWORD = 'password';
   static final String REFRESH_TOKEN = 'refresh_token';
+
+  static final String URL="http://192.168.1.12:8083";
 }

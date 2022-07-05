@@ -4,17 +4,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import 'alert_component.dart';
+
 class DeleteUsersCart extends StatelessWidget {
   String name;
   String address;
   String mail;
   String role;
+  List list;
+  int index;
   DeleteUsersCart(
       {Key? key,
-        required this.name,
-        required this.address,
-        required this.mail,
-        required this.role})
+      required this.name,
+      required this.address,
+      required this.mail,
+      required this.role,
+      required this.list,
+      required this.index})
       : super(key: key);
 
   @override
@@ -25,7 +31,8 @@ class DeleteUsersCart extends StatelessWidget {
         height: 150.h,
         width: Get.width * 0.5,
         decoration: BoxDecoration(
-            color: Colors.grey, borderRadius: BorderRadius.circular(15)),
+            color: Colors.orangeAccent.withOpacity(0.3),
+            borderRadius: BorderRadius.circular(15)),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -34,30 +41,44 @@ class DeleteUsersCart extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Name : '),
-                    Text(name),
-                    SizedBox(width: 150,),
-                    Icon(Icons.delete_rounded,color: Colors.red,)
+                    Row(
+                      children: [
+                        const Text('Name : '),
+                        Text(name),
+                      ],
+                    ),
+                    InkWell(
+                      child: const Icon(
+                        Icons.delete_rounded,
+                        color: Colors.red,
+                      ),
+                      onTap: () {
+                        list.removeAt(index);
+                        AlertComponent alertComponent = AlertComponent(
+                            errorMessage: "User deleted successfully",
+                            title: "Delete User");
+                        alertComponent.showMyDialog();
+                      },
+                    )
                   ],
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    Text('Mail : '),
+                    const Text('Mail : '),
                     Text(mail),
                   ],
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    Text('Adress : '),
+                    const Text('Adress : '),
                     Text(address),
                   ],
                 ),
@@ -66,7 +87,7 @@ class DeleteUsersCart extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    Text('Role : '),
+                    const Text('Role : '),
                     Text(role),
                   ],
                 ),

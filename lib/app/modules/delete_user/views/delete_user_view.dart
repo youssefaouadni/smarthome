@@ -16,9 +16,9 @@ class DeleteUserView extends GetView<DeleteUserController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrangeAccent,
-        title: Text("Smart Home"),
+        title: const Text("Smart Home"),
       ),
-      drawer: AppDrawerView(),
+      drawer: const AppDrawerView(),
       backgroundColor: Colors.grey,
       body: Column(
         children: [
@@ -51,21 +51,24 @@ class DeleteUserView extends GetView<DeleteUserController> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Obx(() => (!controller.loading.value)
-                    ? Container(
+                    ? SizedBox(
                   height: 600.h * controller.users.length,
                   child: ListView.separated(
                     scrollDirection: Axis.vertical,
                     itemCount: controller.users.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return DeleteUsersCart(
-                          name: controller.users[2].name! +
-                              controller.users[2].lastname!,
-                          address: controller.users[2].address!,
-                          mail: controller.users[2].email!,
-                          role: controller.users[2].role!);
+                      return controller.users[index].name!=null ? DeleteUsersCart(
+                        list: controller.users,
+                          index: index,
+                          name: controller.users[index].name! +
+                              controller.users[index].lastname!,
+                          address: controller.users[index].address!,
+                          mail: controller.users[index].email!,
+                          role: controller.users[index].role!):Container();
+
                     },
                     separatorBuilder: (BuildContext context, int index) {
-                      return SizedBox(
+                      return const SizedBox(
                         height: 20,
                       );
                     },

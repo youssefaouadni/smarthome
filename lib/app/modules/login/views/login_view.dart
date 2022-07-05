@@ -43,7 +43,7 @@ class LoginView extends GetView<LoginController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Welcome\nBack',
+                          Text('Welcome\n Smart Home',
                               style: boldTextStyle(color: Colors.black45, size: 25)),
                           Container(
                             height: 78,
@@ -73,24 +73,13 @@ class LoginView extends GetView<LoginController> {
                       AppTextField(
                         textStyle: primaryTextStyle(color: Colors.black45),
                         cursorColor: white,
-                        textFieldType: TextFieldType.PASSWORD,
-                        suffixIconColor: white,
-                        suffix: const Icon(Icons.remove_red_eye_rounded,
-                            color: Colors.black45),
+                        textFieldType: TextFieldType.NAME,
+
                         decoration: buildSHInputDecoration('Password',
                             textColor: Colors.grey),
                       ),
                       16.height,
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Text('Forgot Password?',
-                                style: boldTextStyle(color: Colors.black45),
-                                textAlign: TextAlign.end)
-                            .onTap(
-                          () {},
-                        ),
-                      ),
-                      80.height,
+
                       button(
                         context: context,
                         textColor: white,
@@ -99,21 +88,7 @@ class LoginView extends GetView<LoginController> {
                         onTap: () {Get.off(()=>HomeView(),binding: HomeBinding());},
                       ),
                       32.height,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Don\'t have account?',
-                              style: primaryTextStyle(color: grey)),
-                          4.width,
-                          Text('Get Started',
-                                  style: boldTextStyle(color: Colors.deepOrangeAccent, size: 16))
-                              .onTap(
-                            () {
 
-                            },
-                          ),
-                        ],
-                      )
                     ],
                   ),
                 ),

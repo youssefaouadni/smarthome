@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:smart_home/app/modules/app_drawer/views/app_drawer_view.dart';
-import 'package:smart_home/components/users_cart.dart';
-import '../../../../utils/SHColors.dart';
-import '../../../../utils/SHComman.dart';
-import '../controllers/home_controller.dart';
+import 'package:smart_home/components/pairing_cart.dart';
 
-class HomeView extends GetView<HomeController> {
-  HomeView({Key? key}) : super(key: key);
-  HomeController homeController = Get.put(HomeController());
+import '../../../../utils/SHComman.dart';
+import '../../app_drawer/views/app_drawer_view.dart';
+import '../controllers/list_pairings_controller.dart';
+
+class ListPairingsView extends GetView<ListPairingsController> {
+  const ListPairingsView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,16 +63,20 @@ class HomeView extends GetView<HomeController> {
                 padding: const EdgeInsets.all(8.0),
                 child: Obx(() => (!controller.loading.value)
                     ? SizedBox(
-                        height: 600.h * controller.users.length,
+                        height: 600.h * controller.pairings.length,
                         child: ListView.separated(
                           scrollDirection: Axis.vertical,
-                          itemCount: controller.users.length,
+                          itemCount: controller.pairings.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return controller.users[index].name!=null ? UsersCart(
-                                name: "${controller.users[index].name!} ${controller.users[index].lastname!}",
-                                address: controller.users[index].address!,
-                                mail: controller.users[index].email!,
-                                role: controller.users[index].role!):Container();
+                            return controller.pairings[index].owner != null
+                                ? PairingCart(
+                                    installer: controller
+                                        .pairings[index].installer
+                                        .toString(),
+                                    owner: controller.pairings[index].owner
+                                        .toString(),
+                                  )
+                                : Container();
                           },
                           separatorBuilder: (BuildContext context, int index) {
                             return const SizedBox(

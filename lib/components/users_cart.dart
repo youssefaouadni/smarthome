@@ -25,7 +25,7 @@ class UsersCart extends StatelessWidget {
         height: 150.h,
         width: Get.width * 0.5,
               decoration: BoxDecoration(
-            color: Colors.grey, borderRadius: BorderRadius.circular(15)),
+            color: Colors.orangeAccent.withOpacity(0.3), borderRadius: BorderRadius.circular(15)),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
