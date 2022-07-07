@@ -3,14 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:smart_home/components/dropdown.dart';
 
 import '../../../../utils/SHComman.dart';
 import '../../app_drawer/views/app_drawer_view.dart';
-import '../controllers/add_user_controller.dart';
+import '../controllers/add_zones_controller.dart';
 
-class AddUserView extends GetView<AddUserController> {
-  const AddUserView({Key? key}) : super(key: key);
+class AddZonesView extends GetView<AddZonesController> {
+  const AddZonesView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,40 +53,14 @@ class AddUserView extends GetView<AddUserController> {
                       children: [
                         AppTextField(
                           textStyle: primaryTextStyle(color: Colors.black),
-                          controller: controller.firstNameController,
+                          controller: controller.labelController,
                           cursorColor: white,
                           textFieldType: TextFieldType.USERNAME,
-                          decoration: buildSHInputDecoration('Name',
+                          decoration: buildSHInputDecoration('label',
                               textColor: Colors.black),
                         ),
                         16.height,
-                        AppTextField(
-                          controller: controller.lastNameController,
-                          textStyle: primaryTextStyle(color: Colors.black),
-                          cursorColor: white,
-                          textFieldType: TextFieldType.USERNAME,
-                          decoration: buildSHInputDecoration('Last Name',
-                              textColor: Colors.black),
-                        ),
-                        16.height,
-                        AppTextField(
-                          controller: controller.emailNameController,
-                          textStyle: primaryTextStyle(color: Colors.black),
-                          cursorColor: white,
-                          textFieldType: TextFieldType.EMAIL,
-                          decoration: buildSHInputDecoration('Email',
-                              textColor: Colors.black),
-                        ),
-                        16.height,
-                        AppTextField(
-                          controller: controller.addressController,
-                          textStyle: primaryTextStyle(color: Colors.black),
-                          cursorColor: white,
-                          textFieldType: TextFieldType.ADDRESS,
-                          decoration: buildSHInputDecoration('Address',
-                              textColor: Colors.black),
-                        ),
-                        16.height,
+
                         Obx(()=>Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: SizedBox(
@@ -95,7 +68,7 @@ class AddUserView extends GetView<AddUserController> {
                             child: DropdownButton<String>(
                               value: controller.dropDownValue.value,
                               icon:  Padding(
-                                padding: EdgeInsets.only(left: 300.0.w),
+                                padding: EdgeInsets.only(left: 280.0.w),
                                 child: Icon(Icons.arrow_downward),
                               ),
                               elevation: 16,
@@ -118,14 +91,45 @@ class AddUserView extends GetView<AddUserController> {
                             ),
                           ),
                         )),
+
                         const SizedBox(height: 20,),
+                        Obx(()=>(controller.devices.isNotEmpty)?Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
+                            width: Get.width,
+                            child: DropdownButton<String>(
+                              value: controller.device.value,
+                              icon:  Padding(
+                                padding: EdgeInsets.only(left: 265.0.w),
+                                child: Icon(Icons.arrow_downward),
+                              ),
+                              elevation: 16,
+                              style: const TextStyle(color: Colors.black45),
+                              underline: Container(
+                                height: 2,
+                                color: Colors.deepOrangeAccent,
+                              ),
+                              onChanged: (String? newValue) {
+                                controller.device.value = newValue!;
+                                print(controller.device);
+                              },
+                              items: controller.devices
+                                  .map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ):CircularProgressIndicator()),
                         button(
                           context: context,
                           textColor: white,
                           width: Get.width,
                           text: 'Add user',
                           onTap: () async {
-                            await controller.addUser();
+                             controller.addZone();
                           },
                         ),
                         32.height,

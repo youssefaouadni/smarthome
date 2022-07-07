@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import 'alert_component.dart';
-
-class DeleteUsersCart extends StatelessWidget {
-  String name;
-  String address;
-  String mail;
-  String role;
-  List list;
-  int index;
-  DeleteUsersCart(
+class HomeCart extends StatelessWidget {
+  String verHard;
+  String verSoft;
+  String dateFab;
+  String dateOeuvre;
+  String zones;
+  String label;
+  String location;
+  HomeCart(
       {Key? key,
-      required this.name,
-      required this.address,
-      required this.mail,
-      required this.role,
-      required this.list,
-      required this.index})
+      required this.verHard,
+      required this.dateFab,
+      required this.zones,
+      required this.dateOeuvre,
+      required this.label,
+      required this.location,
+      required this.verSoft})
       : super(key: key);
 
   @override
@@ -28,7 +27,7 @@ class DeleteUsersCart extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 160.h,
+        height: 250.h,
         width: Get.width * 0.5,
         decoration: BoxDecoration(
             color: Colors.orangeAccent.withOpacity(0.3),
@@ -41,27 +40,9 @@ class DeleteUsersCart extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        const Text('Name : '),
-                        Text(name),
-                      ],
-                    ),
-                    InkWell(
-                      child: const Icon(
-                        Icons.delete_rounded,
-                        color: Colors.red,
-                      ),
-                      onTap: () {
-                        list.removeAt(index);
-                        AlertComponent alertComponent = AlertComponent(
-                            errorMessage: "User deleted successfully",
-                            title: "Delete User");
-                        alertComponent.showMyDialog();
-                      },
-                    )
+                    Text('Version Hard : '),
+                    Text(verHard),
                   ],
                 ),
               ),
@@ -69,8 +50,8 @@ class DeleteUsersCart extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    const Text('Mail : '),
-                    Text(mail),
+                    Text('Version Soft : '),
+                    Text(verSoft),
                   ],
                 ),
               ),
@@ -78,8 +59,8 @@ class DeleteUsersCart extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    const Text('Adress : '),
-                    Text(address),
+                    Text('Date Fabrication : '),
+                    Text(dateFab),
                   ],
                 ),
               ),
@@ -87,8 +68,35 @@ class DeleteUsersCart extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    const Text('Role : '),
-                    Text(role),
+                    Text('Date doueverture : '),
+                    Text(dateOeuvre),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text('Zones : '),
+                    Text(zones),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text('Label : '),
+                    Text(label),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text('Location : '),
+                    Text(location),
                   ],
                 ),
               )
